@@ -18,7 +18,7 @@ services:
    - TOTUM_HOST=${TOTUM_HOST}
    - TZ=${TZ}
   volumes:
-   - "/app/totum/Conf.php:/home/totum/totum/Conf.php"
+   - "../../totum/Conf.php:/home/totum/totum/Conf.php"
   depends_on:
    totum-db:
     condition: service_healthy
@@ -31,6 +31,8 @@ services:
    - totum
   dns:
    - 192.168.0.0
+   - 8.8.8.8
+   - 114.114.114.114
   dns_search: dc.domain.ru
   logging:
    driver: "json-file"
@@ -51,9 +53,9 @@ services:
    - POSTGRES_DB_SCHEME=${DB_SCHEME}
    - TZ=${TZ}
    - PGTZ=${TZ}
-  volumes: 
-   - "/app/totum/db:/var/lib/postgresql/data"
-   - "/app/totum/db_scripts:/docker-entrypoint-initdb.d"
+  volumes:
+   - "../../totum/db:/var/lib/postgresql/data"
+   - "../../totum/db_scripts:/docker-entrypoint-initdb.d"
   healthcheck:
    test: [ "CMD-SHELL", "pg_isready -d \$\${POSTGRES_DB} -U \$\${POSTGRES_USER} --quiet" ]
    start_period: 20s
@@ -80,7 +82,7 @@ services:
    - MEILI_HTTP_ADDR=0.0.0.0:7700
    - MEILI_NO_ANALYTICS=true
    - MEILI_LOG_LEVEL=WARN
-  volumes: 
+  volumes:
    - "meili_data:/meili_data"
   networks:
    - totum

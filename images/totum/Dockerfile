@@ -3,7 +3,7 @@ FROM ubuntu:${UBUNTU_VERSION}
 ARG DEBIAN_FRONTEND=noninteractive
 # ARG GIT_AUTH='...'
 # ARG TOTUM_REPO="https://${GIT_AUTH}github.com/totumonline/totum-pro.git"
-ARG TOTUM_REPO="https://github.com/totumonline/totum-mit.git"
+ARG TOTUM_REPO="https://github.com/hokhyk/totum-mit.git"
 ENV TZ=Etc/UTC
 
 ENV TOTUM_DB_HOST=127.0.0.1
