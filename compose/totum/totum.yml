@@ -5,7 +5,7 @@ services:
   image: images/totum:mode
   container_name: "totum"
   ports:
-   - "0.0.0.0:80:80"
+   - "0.0.0.0:2020:80"
   environment:
    - TOTUM_DB_HOST=db
    - TOTUM_DB_USER=${DB_USER}
@@ -37,15 +37,15 @@ services:
   logging:
    driver: "json-file"
    options:
-    max-size: "200k" 
+    max-size: "200k"
     max-file: "5"
   restart: always
 
  totum-db:
   image: postgres:14-alpine
   container_name: "totum-db"
-# ports:
-#  - "5432:5432"
+  ports:
+   - "5432:5432"
   environment:
    - POSTGRES_USER=${DB_USER}
    - POSTGRES_PASSWORD=${DB_PASS}
